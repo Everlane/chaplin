@@ -89,18 +89,12 @@ module.exports = (grunt) ->
     # Publishing via Git
     # ------------------
     transbrute:
-      docs:
-        remote: 'git@github.com:Everlane/chaplin.git'
-        branch: 'gh-pages'
-        files: [
-          { expand: true, cwd: 'docs/', src: '**/*' }
-        ]
       downloads:
         message: "Release #{pkg.version}."
         tag: pkg.version
         tagMessage: "Version #{pkg.version}."
         remote: 'git@github.com:Everlane/chaplin-downloads.git'
-        branch: 'gh-pages'
+        branch: 'master'
         files: [
           { expand: true, cwd: 'build/', src: 'chaplin.{js,min.js}' },
           {
@@ -109,8 +103,8 @@ module.exports = (grunt) ->
               name: 'everlane-chaplin',
               repo: 'Everlane/chaplin-downloads',
               version: pkg.version,
-              main: 'chaplin.js',
-              scripts: ['chaplin.js'],
+              main: 'everlane-chaplin.js',
+              scripts: ['everlane-chaplin.js'],
               dependencies: { backbone: '1.x' }
             }
           },
@@ -120,8 +114,8 @@ module.exports = (grunt) ->
               name: 'everlane-chaplin',
               repo: 'Everlane/chaplin-downloads',
               version: pkg.version,
-              main: 'chaplin.js',
-              scripts: ['chaplin.js'],
+              main: 'everlane-chaplin.js',
+              scripts: ['everlane-chaplin.js'],
               dependencies: (obj = {}; obj["#{ componentsFolder }/backbone"] = '1.x'; obj)
             }
           },
@@ -131,12 +125,12 @@ module.exports = (grunt) ->
               name: 'everlane-chaplin',
               version: pkg.version,
               description: 'Chaplin.js',
-              main: 'chaplin.js',
+              main: 'everlane-chaplin.js',
               scripts: { test: 'echo "Error: no test specified" && exit 1' },
               repository: {
                 type: 'git', url: 'git://github.com/Everlane/chaplin-downloads.git'
               },
-              author: 'Chaplin team',
+              author: 'Chaplin x Everlane',
               license: 'MIT',
               bugs: { url: 'https://github.com/Everlane/chaplin-downloads/issues' },
               dependencies: { backbone: '~1.1.2', underscore: '~1.6.0', requirejs: '2.1.1' }
@@ -337,14 +331,14 @@ module.exports = (grunt) ->
         mangle: true
       universal:
         files:
-          'build/chaplin.min.js': 'build/chaplin.js'
+          'build/everlane-chaplin.min.js': 'build/everlane-chaplin.js'
 
     # Compression
     # -----------
     compress:
       files: [
-        src: 'build/chaplin.min.js'
-        dest: 'build/chaplin.min.js.gz'
+        src: 'build/everlane-chaplin.min.js'
+        dest: 'build/everlane-chaplin.min.js.gz'
       ]
 
     # Watching for changes
