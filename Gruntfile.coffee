@@ -96,7 +96,7 @@ module.exports = (grunt) ->
         remote: 'git@github.com:Everlane/chaplin-downloads.git'
         branch: 'master'
         files: [
-          { expand: true, cwd: 'build/', src: 'chaplin.{js,min.js}' },
+          { expand: true, cwd: 'build/', src: 'everlane-chaplin.{js,min.js}' },
           {
             dest: 'bower.json',
             body: {
@@ -105,7 +105,7 @@ module.exports = (grunt) ->
               version: pkg.version,
               main: 'everlane-chaplin.js',
               scripts: ['everlane-chaplin.js'],
-              dependencies: { backbone: '1.x' }
+              dependencies: { backbone: '1.x', requirejs: '2.1.1' }
             }
           },
           {
@@ -116,7 +116,7 @@ module.exports = (grunt) ->
               version: pkg.version,
               main: 'everlane-chaplin.js',
               scripts: ['everlane-chaplin.js'],
-              dependencies: (obj = {}; obj["#{ componentsFolder }/backbone"] = '1.x'; obj)
+              dependencies: (obj = {requirejs: '2.1.1'}; obj["#{ componentsFolder }/backbone"] = '1.x'; obj)
             }
           },
           {
@@ -256,6 +256,9 @@ module.exports = (grunt) ->
           });
           loader.register('underscore', function(exports, require, module) {
             module.exports = _;
+          });
+          loader.register('require', function(exports, require, module) {
+            module.exports = require;
           });
         };
 
@@ -430,7 +433,6 @@ module.exports = (grunt) ->
     'test'
     'watch'
   ]
-
   # Releasing
   # ---------
 
@@ -543,4 +545,10 @@ module.exports = (grunt) ->
     'clean'
     'build'
     'test'
+  ]
+
+  grunt.registerTask 'everlane-release', [
+    'clean'
+    'build'
+    'transbrute:downloads'
   ]
