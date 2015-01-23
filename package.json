@@ -1,6 +1,6 @@
 {
   "name": "everlane-chaplin",
-  "version": "1.0.3b",
+  "version": "1.0.3c",
   "description": "An Application Architecture Using Backbone.js",
   "repository": "git@github.com:Everlane/chaplin.git",
   "devDependencies": {

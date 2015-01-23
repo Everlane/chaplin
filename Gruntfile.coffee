@@ -105,7 +105,7 @@ module.exports = (grunt) ->
               version: pkg.version,
               main: 'everlane-chaplin.js',
               scripts: ['everlane-chaplin.js'],
-              dependencies: { backbone: '1.x', requirejs: '2.1.1' }
+              dependencies: { backbone: '1.x', requirejs: '~2.1.1' }
             }
           },
           {
@@ -116,7 +116,7 @@ module.exports = (grunt) ->
               version: pkg.version,
               main: 'everlane-chaplin.js',
               scripts: ['everlane-chaplin.js'],
-              dependencies: (obj = {requirejs: '2.1.1'}; obj["#{ componentsFolder }/backbone"] = '1.x'; obj)
+              dependencies: (obj = {requirejs: '~2.1.1'}; obj["#{ componentsFolder }/backbone"] = '1.x'; obj)
             }
           },
           {
@@ -133,7 +133,7 @@ module.exports = (grunt) ->
               author: 'Chaplin x Everlane',
               license: 'MIT',
               bugs: { url: 'https://github.com/Everlane/chaplin-downloads/issues' },
-              dependencies: { backbone: '~1.1.2', underscore: '~1.6.0', requirejs: '2.1.1' }
+              dependencies: { backbone: '~1.1.2', underscore: '~1.6.0', requirejs: '~2.1.1' }
             }
           }
         ]
