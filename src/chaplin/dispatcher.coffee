@@ -2,7 +2,6 @@
 
 _ = require 'underscore'
 Backbone = require 'backbone'
-requirejs = require 'require'
 mediator = require 'chaplin/mediator'
 utils = require 'chaplin/lib/utils'
 EventBroker = require 'chaplin/lib/event_broker'
@@ -80,11 +79,16 @@ module.exports = class Dispatcher
   loadController: (name, handler) ->
     fileName = name + @settings.controllerSuffix
     moduleName = @settings.controllerPath + fileName
+    ###
+    We are masking require here so `urequire` doesn't pick up the following
+    calls to it, which are supposed to be dynamic requires, not compiled
+    ###
+    _require = require
     if define?.amd
-      requirejs [moduleName], handler
+      _require [moduleName], handler
     else
       setTimeout =>
-        handler requirejs(moduleName)
+        handler _require(moduleName)
       , 0
 
   # Handler for the controller lazy-loading.
