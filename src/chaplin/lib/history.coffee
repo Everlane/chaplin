@@ -32,6 +32,20 @@ class History extends Backbone.History
 
     fragment.replace routeStripper, ''
 
+  checkUrl: (e) ->
+    current = @getFragment()
+    if current == @fragment && this.iframe
+      current = @getHash @iframe.contentWindow
+
+    if current == @fragment
+      return false
+
+    if @iframe
+      @navigate current
+
+    if not @loadUrl()
+      window.location.reload()
+
   # Start the hash change handling, returning `true` if the current URL matches
   # an existing route, and `false` otherwise.
   start: (options) ->
