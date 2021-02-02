@@ -1,6 +1,6 @@
 {
   "name": "everlane-chaplin",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An Application Architecture Using Backbone.js",
   "repository": "git@github.com:Everlane/chaplin.git",
   "devDependencies": {
@@ -20,6 +20,11 @@
     "grunt-transbrute": "~0.2.0",
     "prompt": "0.2.x",
     "phantomjs": "1.9.x"
+  },
+  "dependencies": {
+    "backbone": "^1.4.0",
+    "jquery": "^3.5.1",
+    "underscore": "^1.12.0"
   },
   "main": "build/chaplin.js",
   "scripts": {

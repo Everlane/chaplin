@@ -104,6 +104,10 @@ module.exports = class Layout extends View
 
   # Handle all clicks on A elements and try to route them internally.
   openLink: (event) =>
+    # If in Builder editing mode, do not open link
+    searchParams = new URLSearchParams(window.location.search)
+    return if searchParams.get('__builder_editing__') == 'true'
+
     return if utils.modifierKeyPressed(event)
 
     el = if $ then event.currentTarget else event.delegateTarget
